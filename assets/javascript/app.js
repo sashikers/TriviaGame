@@ -112,22 +112,41 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 	submitButton.onclick = function(){
 		showResults(questions, quizContainer, resultsContainer);
 	}
-}
 
-var countdownFace = 30; 
-function decreaseCountdown(event) {
-	// event.preventDefault(); 
-	if(countdownFace>0){
-		setInterval(function(){
+	var countdownFace = 31; 
+	function decreaseCountdown(event) {
+		// event.preventDefault(); 
+		var x = setInterval(function() {
 			countdownFace = countdownFace - 1;
 			$("#countdown").html(countdownFace);
+
+			if (countdownFace === 0) {
+				clearInterval(x);
+				$("#countdown").html("Time's up!");
+				showResults(questions, quizContainer, resultsContainer);
+			}
 		},
-	1000);
-	} else {
-		countdownFace = 0;
-		clearInterval();
+		1000); 
 	}
+
+	decreaseCountdown();
 }
+
+// var countdownFace = 3; 
+// function decreaseCountdown(event) {
+// 	// event.preventDefault(); 
+// 	var x = setInterval(function() {
+// 		countdownFace = countdownFace - 1;
+// 		$("#countdown").html(countdownFace);
+
+// 		if (countdownFace === 0) {
+// 			clearInterval(x);
+// 			$("#countdown").html("Time's up!");
+// 			showResults(questions, quizContainer, resultsContainer);
+// 		}
+// 	},
+// 	1000); 
+// }
 
 
 
@@ -135,5 +154,5 @@ function decreaseCountdown(event) {
 $("#newQuiz").on("click", function(event){
 	event.preventDefault();
 	generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
-	decreaseCountdown();
+	// decreaseCountdown();
 })
