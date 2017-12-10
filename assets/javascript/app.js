@@ -1,4 +1,6 @@
-var questionSet = [
+
+
+const questionSet = [
 	{
 		question: "What is Earth's largest continent?",
 		answers: {
@@ -46,21 +48,47 @@ var questionSet = [
 			b: "Adriatic Sea",
 			c: "Celebes Sea",
 			d: "Mediterranean Sea",
-		}
+		},
 		correctAnswer: "a",
-	}
-]
+	},
+];
 
-var quizContainer = $("#quiz");
-// var quizContainer = document.getElementById('quiz');
-var submitButton = $("#submit");
-var resultsContainer = $("#results");
+const quizContainer = $("#quiz");
+const submitButton = $("#submit");
+const resultsContainer = $("#results");
 console.log(quizContainer);
 
-function quizInitiate() {}
+function quizInitiate(event) {
+	// event.preventDefault();
+	const output = []; 
+	questionSet.forEach(
+		(currentQuestion, questionNumber) => {
+			const answers = [];
+			for (letter in currentQuestion.answers){
+				// answers.push(
+				// 	'<label><input type="radio" name="question${questionNumber}" value ="${letter}">${letter}:${currentQuestion.answers[letter]}</label>'
+				// );
+				answers.push(
+					'<label><input type="radio" name="question' + questionNumber + '" value ="' + letter + '">' + letter + ':' + currentQuestion.answers[letter] + '</label>'
+				);				
+			}
 
-function displayResults() {
+			output.push(
+				'<div class="question">'+ currentQuestion.question + '</div><div class="answers">' + answers.join('') + '</div>'	
+			);
+		}	
+	);
+
+	// quizContainer.innerHTML = output.join("");
+	// $("#quiz").html(output.join(""));
+	document.getElementById("quiz").innerHTML = output.join("");
+	console.log("output.join", output.join(""));
+}
+
+function displayResults(event) {
+	// event.preventDefault();
 	console.log("hello");
+
 }
 
 quizInitiate();
