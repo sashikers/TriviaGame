@@ -69,20 +69,19 @@ function quizInitiate(event) {
 				// 	'<label><input type="radio" name="question${questionNumber}" value ="${letter}">${letter}:${currentQuestion.answers[letter]}</label>'
 				// );
 				answers.push(
-					'<label><input type="radio" name="question' + questionNumber + '" value ="' + letter + '">' + letter + ':' + currentQuestion.answers[letter] + '</label>'
+					'<label><input type="radio" name="question' + questionNumber + '" value="' + letter + '">' + letter + ':' + currentQuestion.answers[letter] + '</label>'
 				);				
 			}
 
 			output.push(
-				'<div class="question">'+ currentQuestion.question + '</div><div class="answers">' + answers.join('') + '</div>'	
+				'<div class="question">'+ currentQuestion.question + '</div><div class="answers">' + answers.join("") + '</div>'	
 			);
 		}	
 	);
 
 	// quizContainer.innerHTML = output.join("");
-	// $("#quiz").html(output.join(""));
-	document.getElementById("quiz").innerHTML = output.join("");
-	console.log("output.join", output.join(""));
+	$("#quiz").html(output.join(""));
+	// document.getElementById("quiz").innerHTML = output.join("");
 }
 
 function displayResults(event) {
