@@ -4,7 +4,8 @@ label {
 }
 
 input {
-	padding: 20px;
+	padding: 100px;
+	margin: 10px;
 }
 
 .question {

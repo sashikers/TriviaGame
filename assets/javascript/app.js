@@ -92,9 +92,10 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 		var numCorrect = 0; 
 
 		for (var i = 0; i<questions.length; i++){
+			// this is the line that is broken because console.log comes up undefined
 			userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
 			console.log(userAnswer);
-			if(userAnswer === questions[i].correctAnswer) {
+			if(userAnswer === currentQuestion.correctAnswer) {
 				numCorrect++;
 				answerContainers[i].style.color = 'green';
 			} else {
