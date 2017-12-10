@@ -69,7 +69,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 			for(letter in questions[i].answers){
 				answers.push(
 					'<label>'
-						+ '<input type="radio" name="question>' + i + '" value="' + letter + '">'
+						+ '<input type="radio" name="question' + i + '" value="' + letter + '">'
 						+ letter + ': '
 						+ questions[i].answers[letter]
 					+ '</label>'
@@ -86,7 +86,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 	}
 
 	function showResults(questions, quizContainer, resultsContainer) {
-		var answerContainers = quizContainer.querySelectorAll('.answers');
+		const answerContainers = quizContainer.querySelectorAll('.answers');
 		console.log("answerContainers", answerContainers);
 
 		var userAnswer = '';
