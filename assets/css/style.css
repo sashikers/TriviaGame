@@ -13,11 +13,28 @@ input {
 }
 
 .jumbotron {
-	background-image: url("map.jpg");
+	background-image: url("largemap.jpg");
 	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
 	opacity: 50%;
+	color: white;
+	text-shadow: 2px 2px 2px black;
 }
 
 #timer {
 	font-weight: strong;
+	font-size: 1.1em;
+}
+
+.answers label {
+	display: block;
+}
+
+button {
+	font-size: 1.2em;
+	background-color: tan;
+	border-style: solid;
+	border-width: 2px;
+	border-color: maroon;
 }

@@ -87,6 +87,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 
 	function showResults(questions, quizContainer, resultsContainer) {
 		var answerContainers = quizContainer.querySelectorAll('.answers');
+		console.log("answerContainers", answerContainers);
 
 		var userAnswer = '';
 		var numCorrect = 0; 
