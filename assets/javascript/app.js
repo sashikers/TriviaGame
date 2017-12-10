@@ -113,7 +113,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 	}
 }
 
-var countdownFace = 4; 
+var countdownFace = 30; 
 function decreaseCountdown(event) {
 	// event.preventDefault(); 
 	if(countdownFace>0){
