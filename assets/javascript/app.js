@@ -1,5 +1,4 @@
-
-
+// set of questions
 var myQuestions = [
 	{
 		question: "What is Earth's largest continent?",
@@ -53,20 +52,29 @@ var myQuestions = [
 	},
 ];
 
+// grabs the DOM elements from the HTML
 var quizContainer = document.getElementById('quiz');
 var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('submit');
 
+// generates the quiz
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
 
+	// displays the questions
+	// questions and quizContainer get passed in from the generateQuiz function
 	function showQuestions(questions, quizContainer) {
+		// creates an empty array for the output
 		var output = [];
 		var answers;
 
+		// iterates through the questions array, and for each question...
 		for(var i = 0; i<questions.length; i++){
+			// creates an empty array for the answer options
 			answers = [];
 
+			// for every answer option for an individual question
 			for(letter in questions[i].answers){
+				// creates a radio button with the name of question number, a value of its letter, and a label of its answer, and pushes it into the answers array
 				answers.push(
 					'<label>'
 						+ '<input type="radio" name="question' + i + '" value="' + letter + '">'
@@ -76,83 +84,85 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 				);
 			}
 
+			// all of the individual questions and their answer arrays are pushed into the output
 			output.push(
 				'<div class="question">' + questions[i].question + '</div>'
 				+ '<div class="answers">' + answers.join('') + '</div>'
 			);
 		}
 
+		// output is then pushed into the quizContainer
 		quizContainer.innerHTML = output.join('');
 	}
 
+	// function shows the results
 	function showResults(questions, quizContainer, resultsContainer) {
+		// grab all the answer divs
 		const answerContainers = quizContainer.querySelectorAll('.answers');
-		console.log("answerContainers", answerContainers);
 
+		// set up the initial constants 
 		var userAnswer = '';
 		var numCorrect = 0; 
 
+		// for each question...
 		for (var i = 0; i<questions.length; i++){
-			// this is the line that is broken because console.log comes up undefined
+			// set the user answer to the value of whatever radio button is checked
 			userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
-			console.log(userAnswer);
+			// if the radio button matches the correct answer...
 			if(userAnswer === questions[i].correctAnswer) {
+				// increase the number of wins by 1
 				numCorrect++;
+				// change the answer color to green
 				answerContainers[i].style.color = 'green';
+			// and if it doesn't, change to red
 			} else {
-				answerContainers[i].style.color = 'red';
+				answerContainers[i].style.color = 'maroon';
 			}
 		}
-
+		// displays results to the user
 		resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
 	}
 
+	// runs function that shows the questions to the user
 	showQuestions(questions, quizContainer);
 
+	// assigning the showresults function to the submit button
 	submitButton.onclick = function(){
 		showResults(questions, quizContainer, resultsContainer);
 	}
 
+	// sets the countdown max (first number to be shown will be 30)
 	var countdownFace = 31; 
+	// function that will start countdown when quiz is generated 
 	function decreaseCountdown(event) {
-		// event.preventDefault(); 
+		// sets the interval function for 1 sec
 		var x = setInterval(function() {
+			// decreases visibile timer by 1
 			countdownFace = countdownFace - 1;
+			// shows decreased time
 			$("#countdown").html(countdownFace);
+			// if the timer hits 0, time is up 
 
 			if (countdownFace === 0) {
+				// timer is stopped
 				clearInterval(x);
-				$("#countdown").html("Time's up!");
+				// time displays "time is up" to user
+				$("#timer").html("Time's up!");
+				// and results are shown regardless of completion
 				showResults(questions, quizContainer, resultsContainer);
 			}
 		},
 		1000); 
 	}
 
+	// the start of the decreasing function
 	decreaseCountdown();
 }
 
-// var countdownFace = 3; 
-// function decreaseCountdown(event) {
-// 	// event.preventDefault(); 
-// 	var x = setInterval(function() {
-// 		countdownFace = countdownFace - 1;
-// 		$("#countdown").html(countdownFace);
-
-// 		if (countdownFace === 0) {
-// 			clearInterval(x);
-// 			$("#countdown").html("Time's up!");
-// 			showResults(questions, quizContainer, resultsContainer);
-// 		}
-// 	},
-// 	1000); 
-// }
-
-
-
-// generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+// button that will start the game
 $("#newQuiz").on("click", function(event){
+	// will not run by default
 	event.preventDefault();
+	// quiz function is called, which calls the showQuestions and decreaseCountdown functions within it
 	generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
-	// decreaseCountdown();
 })
