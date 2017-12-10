@@ -113,8 +113,22 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 	}
 }
 
+var countdownFace = 30; 
+function decreaseCountdown(event) {
+	// event.preventDefault(); 
+	setInterval(function(){
+		countdownFace = countdownFace - 1;
+		$("#countdown").html(countdownFace);
+	},1000);
+	// countdownFace = countdownFace - 1000;
+	// $("#countdown").text(countdownFace);
+}
+
+
+
 // generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
 $("#newQuiz").on("click", function(event){
 	event.preventDefault();
 	generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+	decreaseCountdown();
 })
