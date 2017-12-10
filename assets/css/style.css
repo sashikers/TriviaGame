@@ -1,0 +1,12 @@
+label {
+	background-color: black;
+	padding-left: 20px;
+}
+
+input {
+	padding: 20px;
+}
+
+.question {
+	padding: 10px;
+}
