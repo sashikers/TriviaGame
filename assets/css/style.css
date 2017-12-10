@@ -1,5 +1,5 @@
 label {
-	background-color: black;
+	/*background-color: black;*/
 	padding-left: 20px;
 }
 
@@ -9,4 +9,10 @@ input {
 
 .question {
 	padding: 10px;
+}
+
+.jumbotron {
+	background-image: url("map.jpg");
+	background-position: center;
+	opacity: 50%;
 }
