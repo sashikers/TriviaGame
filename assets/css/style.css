@@ -25,10 +25,19 @@ input {
 #timer {
 	font-weight: strong;
 	font-size: 1.1em;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	background-color: maroon;
+	color: white;
+	padding: 5px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: maroon;
 }
 
 .answers label {
-	display: block;
+	/*display: block;*/
 }
 
 button {
@@ -42,4 +51,9 @@ button {
 button:hover {
 	background-color: maroon;
 	color: white;
+}
+
+button:focus {
+	background-color: white;
+	color: maroon;
 }
