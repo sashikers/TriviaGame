@@ -113,15 +113,19 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 	}
 }
 
-var countdownFace = 30; 
+var countdownFace = 4; 
 function decreaseCountdown(event) {
 	// event.preventDefault(); 
-	setInterval(function(){
-		countdownFace = countdownFace - 1;
-		$("#countdown").html(countdownFace);
-	},1000);
-	// countdownFace = countdownFace - 1000;
-	// $("#countdown").text(countdownFace);
+	if(countdownFace>0){
+		setInterval(function(){
+			countdownFace = countdownFace - 1;
+			$("#countdown").html(countdownFace);
+		},
+	1000);
+	} else {
+		countdownFace = 0;
+		clearInterval();
+	}
 }
 
 

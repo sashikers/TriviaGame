@@ -17,3 +17,7 @@ input {
 	background-position: center;
 	opacity: 50%;
 }
+
+#timer {
+	font-weight: strong;
+}
