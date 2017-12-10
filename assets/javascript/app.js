@@ -95,7 +95,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 			// this is the line that is broken because console.log comes up undefined
 			userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
 			console.log(userAnswer);
-			if(userAnswer === currentQuestion.correctAnswer) {
+			if(userAnswer === questions[i].correctAnswer) {
 				numCorrect++;
 				answerContainers[i].style.color = 'green';
 			} else {
@@ -113,4 +113,8 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 	}
 }
 
-generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+// generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+$("#newQuiz").on("click", function(event){
+	event.preventDefault();
+	generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+})
